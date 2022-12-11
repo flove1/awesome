@@ -13,28 +13,26 @@ local themes_path = gfs.get_themes_dir()
 
 local theme = {}
 
-theme.font          = "Source Sans Pro Medium 14"
+theme.font          = "VictorMono Nerd Font Mono 18"
 
-theme.bg_normal     = "#222222"
-theme.bg_focus      = "#dcbfbd"
-theme.bg_urgent     = "#ff0000"
-theme.bg_minimize   = "#444444"
-theme.bg_systray    = theme.bg_normal
+theme.fg            = "#c88d90"
+theme.bg            = "#0c0c0c"
+theme.bg_alt        = "#161616"
 
+theme.bg_normal     = theme.bg
 theme.fg_normal     = "#ffffff"
 theme.fg_focus      = "#000000"
-theme.fg_urgent     = "#000000"
-theme.fg_minimize   = "#000000"
 
-theme.taglist_fg = "#ffffff"
-theme.taglist_bg = "#ffffff"
-theme.taglist_bg_focus = "#dcbfbd"
-theme.taglist_bg_occupied = "#888888"
-theme.taglist_bg_empty = "#444444"
+theme.taglist_bg_focus = theme.fg
+theme.taglist_bg_occupied = "#888"
+theme.taglist_bg_empty = "#333"
 
-theme.titlebar_fg_focus = "#000000"
+theme.titlebar_bg_normal = theme.bg
+theme.titlebar_bg_focus = theme.fg
+theme.titlebar_fg_normal = "#fff"
+theme.titlebar_fg_focus = "#000"
 
-theme.useless_gap   = dpi(8)
+theme.useless_gap   = dpi(12)
 theme.border_width  = dpi(1)
 theme.border_normal = "#000000"
 theme.border_focus  = theme.bg_focus
@@ -73,7 +71,7 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 -- menu_[border_color|border_width]
 theme.menu_submenu_icon = "~/.config/awesome/themes/Aesthetic/submenu.png"
 theme.menu_height = dpi(30)
-theme.menu_width  = dpi(120)
+theme.menu_width  = dpi(180)
 
 -- You can add as many variables as
 -- you wish and access them by using
@@ -109,35 +107,13 @@ theme.titlebar_maximized_button_focus_active  = "~/.config/awesome/themes/Aesthe
 
 theme.wallpaper = wallpaper
 
--- You can use your own layout icons like this:
-theme.layout_fairh = "~/.config/awesome/themes/Aesthetic/layouts/fairhw.png"
-theme.layout_fairv = "~/.config/awesome/themes/Aesthetic/layouts/fairvw.png"
-theme.layout_floating  = "~/.config/awesome/themes/Aesthetic/layouts/floatingw.png"
-theme.layout_magnifier = "~/.config/awesome/themes/Aesthetic/layouts/magnifierw.png"
-theme.layout_max = "~/.config/awesome/themes/Aesthetic/layouts/maxw.png"
-theme.layout_fullscreen = "~/.config/awesome/themes/Aesthetic/layouts/fullscreenw.png"
-theme.layout_tilebottom = "~/.config/awesome/themes/Aesthetic/layouts/tilebottomw.png"
-theme.layout_tileleft   = "~/.config/awesome/themes/Aesthetic/layouts/tileleftw.png"
-theme.layout_tile = "~/.config/awesome/themes/Aesthetic/layouts/tilew.png"
-theme.layout_tiletop = "~/.config/awesome/themes/Aesthetic/layouts/tiletopw.png"
-theme.layout_spiral  = "~/.config/awesome/themes/Aesthetic/layouts/spiralw.png"
-theme.layout_dwindle = "~/.config/awesome/themes/Aesthetic/layouts/dwindlew.png"
-theme.layout_cornernw = "~/.config/awesome/themes/Aesthetic/layouts/cornernww.png"
-theme.layout_cornerne = "~/.config/awesome/themes/Aesthetic/layouts/cornernew.png"
-theme.layout_cornersw = "~/.config/awesome/themes/Aesthetic/layouts/cornersww.png"
-theme.layout_cornerse = "~/.config/awesome/themes/Aesthetic/layouts/cornersew.png"
 
 theme.systray_icon_spacing = 8
 
--- Generate Awesome icon:
 theme.awesome_icon = theme_assets.awesome_icon(
-    theme.menu_height, theme.bg_focus, theme.fg_focus
+    theme.menu_height, theme.fg, theme.fg_focus
 )
 
--- Define the icon theme for application icons. If not set then the icons
--- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 theme.icon_theme = nil
 
 return theme
-
--- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80
