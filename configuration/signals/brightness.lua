@@ -10,7 +10,7 @@ local function get_brightness()
 end
 
 gears.timer {
-	timeout = 2,
+	timeout = 5,
 	call_now = true,
 	autostart = true,
 	callback = function()

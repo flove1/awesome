@@ -5,9 +5,9 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 require("../user_conf")
 
 menu = awful.menu({ items = { 
-	{ "open terminal", terminal },
+	{ "open terminal", Terminal },
 	{ "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end, beautiful.awesome_icon },
-	{ "edit config", editor_cmd .. " " .. awesome.conffile },
+	{ "edit config", Editor_cmd .. " " .. awesome.conffile },
 	{ "restart", awesome.restart },
 	{ "quit", function() awesome.quit() end },
 }})

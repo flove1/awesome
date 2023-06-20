@@ -13,24 +13,27 @@ local themes_path = gfs.get_themes_dir()
 
 local theme = {}
 
-theme.font          = "VictorMono Nerd Font Mono 18"
+theme.font_without_size = "VictorMono Nerd Font Mono "
+theme.font          = "VictorMono Nerd Font Mono 14"
 
-theme.fg            = "#c88d90"
-theme.bg            = "#0c0c0c"
-theme.bg_alt        = "#161616"
+theme.fg            = "#B37EC1"
+theme.bg            = "#0c0b0d"
+theme.bg_alt        = "#262427"
+theme.bg_light        = "#464447"
 
 theme.bg_normal     = theme.bg
-theme.fg_normal     = "#ffffff"
-theme.fg_focus      = "#000000"
+theme.fg_normal     = "#fff"
+theme.fg_dim      	= "#ddd"
+theme.fg_dark 	= "#888"
 
 theme.taglist_bg_focus = theme.fg
 theme.taglist_bg_occupied = "#888"
 theme.taglist_bg_empty = "#333"
 
 theme.titlebar_bg_normal = theme.bg
-theme.titlebar_bg_focus = theme.fg
-theme.titlebar_fg_normal = "#fff"
-theme.titlebar_fg_focus = "#000"
+theme.titlebar_bg_focus = theme.bg
+theme.titlebar_fg_normal = theme.fg_dark
+theme.titlebar_fg_focus = theme.fg
 
 theme.useless_gap   = dpi(12)
 theme.border_width  = dpi(1)
@@ -51,15 +54,6 @@ theme.border_marked = "#91231c"
 -- Example:
 --theme.taglist_bg_focus = "#ff0000"
 
--- Generate taglist squares:
-local taglist_square_size = dpi(4)
-theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
-    taglist_square_size, theme.fg_normal
-)
-theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
-    taglist_square_size, theme.fg_normal
-)
-
 -- Variables set for theming notifications:
 -- notification_font
 -- notification_[bg|fg]
@@ -72,13 +66,9 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 theme.menu_submenu_icon = "~/.config/awesome/themes/Aesthetic/submenu.png"
 theme.menu_height = dpi(30)
 theme.menu_width  = dpi(180)
+theme.menu_fg_normal = theme.fg_dark
+theme.menu_fg_focus = theme.fg_normal
 
--- You can add as many variables as
--- you wish and access them by using
--- beautiful.variable in your rc.lua
---theme.bg_widget = "#cc0000"
-
--- Define the image to load
 theme.titlebar_close_button_normal = "~/.config/awesome/themes/Aesthetic/titlebar/close_normal.png"
 theme.titlebar_close_button_focus  = "~/.config/awesome/themes/Aesthetic/titlebar/close_focus.png"
 
@@ -105,13 +95,13 @@ theme.titlebar_maximized_button_focus_inactive  = "~/.config/awesome/themes/Aest
 theme.titlebar_maximized_button_normal_active = "~/.config/awesome/themes/Aesthetic/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active  = "~/.config/awesome/themes/Aesthetic/titlebar/maximized_focus_active.png"
 
-theme.wallpaper = wallpaper
+theme.wallpaper = Wallpaper
 
 
 theme.systray_icon_spacing = 8
 
 theme.awesome_icon = theme_assets.awesome_icon(
-    theme.menu_height, theme.fg, theme.fg_focus
+    theme.menu_height, theme.fg, theme.bg
 )
 
 theme.icon_theme = nil

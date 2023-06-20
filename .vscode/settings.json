@@ -1,5 +1,11 @@
 {
     "Lua.diagnostics.globals": [
-        "get_panel"
+        "get_panel",
+        "awesome",
+        "screen",
+        "client",
+        "clientbuttons",
+        "root",
+        "menu"
     ]
 }

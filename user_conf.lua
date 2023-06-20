@@ -1,8 +1,7 @@
-terminal = "kitty"
-editor = "vim"
-editor_cmd = terminal .. " -e " .. editor
-modkey = "Mod4"
-launcher = "rofi -show drun"
-theme = "~/.config/awesome/themes/Aesthetic/theme.lua"
-wallpaper = "~/Pictures/16-10/wallhaven-weyjpp.jpg"
--- wallpaper = "~/Pictures/16-10/wallhaven-0pmvpe.png"
+Terminal = "kitty"
+Editor = "vim"
+Editor_cmd = Terminal .. " -e " .. Editor
+Modkey = "Mod4"
+Launcher = "rofi -show drun -theme ~/.config/rofi/launchers/type-6/style-4.rasi"
+Theme = "~/.config/awesome/themes/Aesthetic/theme.lua"
+Wallpaper = "~/Pictures/16-10/wallpaper-1.jpg"
