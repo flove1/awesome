@@ -1,10 +1,5 @@
-local awful = require("awful")
 local beautiful = require("beautiful")
-local gears = require("gears")
-local rubato = require("lib.rubato")
 local wibox = require("wibox")
-local margin = wibox.container.margin
-local naughty = require("naughty")
 
 require("ui.widgets.widget")
 

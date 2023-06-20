@@ -4,7 +4,6 @@ local beautiful = require("beautiful")
 local rubato = require("lib.rubato")
 local wibox = require("wibox")
 local margin = wibox.container.margin
-local naughty = require("naughty")
 local dpi = beautiful.xresources.apply_dpi
 
 require("ui.menu")

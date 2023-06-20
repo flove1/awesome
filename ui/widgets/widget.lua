@@ -1,4 +1,3 @@
-local awful = require("awful")
 local beautiful = require("beautiful")
 local gears = require("gears")
 local rubato = require("lib.rubato")

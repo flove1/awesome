@@ -1,7 +1,6 @@
 local gears = require("gears")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
-local naughty = require("naughty")
 local rubato = require("lib.rubato")
 
 function Button(icon, icon_size, color)
