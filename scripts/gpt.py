@@ -1,5 +1,5 @@
 import sys, subprocess
-from gpt4free import gptworldAi
+import g4f
 
 if len(sys.argv) > 1:
     if sys.argv[1] == "--short":
@@ -11,6 +11,10 @@ if len(sys.argv) > 1:
 else:
     prompt = subprocess.check_output(['xclip', '-o'], text=True)
 
-for chunk in gptworldAi.Completion.create(prompt):
-    print(chunk, end="", flush=True)
-print()
+response = g4f.ChatCompletion.create(
+    model="gpt-3.5-turbo",
+    provider=g4f.Provider.You,
+    messages=[{"role": "user", "content": prompt}]
+)
+
+print(response)

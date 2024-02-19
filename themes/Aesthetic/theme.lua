@@ -16,19 +16,19 @@ local theme = {}
 theme.font_without_size = "VictorMono Nerd Font Mono "
 theme.font          = "VictorMono Nerd Font Mono 14"
 
-theme.fg            = "#B37EC1"
-theme.bg            = "#0c0b0d"
-theme.bg_alt        = "#262427"
-theme.bg_light        = "#464447"
+theme.fg            = "#EC3413"
+theme.bg            = "#210f06";
+theme.bg_alt        = "#614f46"
+theme.bg_light        = "#816f66"
 
 theme.bg_normal     = theme.bg
 theme.fg_normal     = "#fff"
 theme.fg_dim      	= "#ddd"
-theme.fg_dark 	= "#888"
+theme.fg_dark 	= "#aaa"
 
 theme.taglist_bg_focus = theme.fg
-theme.taglist_bg_occupied = "#888"
-theme.taglist_bg_empty = "#333"
+theme.taglist_bg_occupied = "#aaa"
+theme.taglist_bg_empty = "#555"
 
 theme.titlebar_bg_normal = theme.bg
 theme.titlebar_bg_focus = theme.bg
@@ -96,8 +96,6 @@ theme.titlebar_maximized_button_normal_active = "~/.config/awesome/themes/Aesthe
 theme.titlebar_maximized_button_focus_active  = "~/.config/awesome/themes/Aesthetic/titlebar/maximized_focus_active.png"
 
 theme.wallpaper = Wallpaper
-
-
 theme.systray_icon_spacing = 8
 
 theme.awesome_icon = theme_assets.awesome_icon(

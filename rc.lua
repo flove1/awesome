@@ -20,6 +20,7 @@ require("ui.menu")
 
 awful.spawn.once("picom")
 awful.spawn.once("libinput-gestures-setup start")
+awful.spawn.once("xss-lock -n /usr/lib/xsecurelock/dimmer -l -- xsecurelock")
 
 client.connect_signal("manage", function (c)
     if awesome.startup

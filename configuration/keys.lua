@@ -19,14 +19,14 @@ globalkeys = gears.table.join(
 	awful.key({Modkey}, "Escape", awful.tag.history.restore,
 		{description = "go back", group = "tag"}),
 
-	awful.key({Modkey}, "j",
+    awful.key({Modkey}, "Tab",
 		function ()
 			awful.client.focus.byidx( 1)
 		end,
 		{description = "focus next by index", group = "client"}
 	),
 
-	awful.key({Modkey}, "k",
+	awful.key({Modkey, "Shift"}, "Tab",
 		function ()
 			awful.client.focus.byidx(-1)
 		end,
@@ -53,19 +53,6 @@ globalkeys = gears.table.join(
 
 	awful.key({Modkey}, "u", awful.client.urgent.jumpto,
 		{description = "jump to urgent client", group = "client"}),
-
-	awful.key({Modkey}, "Tab",
-		function ()
-			if #awful.screen.focused().selected_tag:clients() == 1 then
-				awful.tag.history.restore()
-			else
-				awful.client.focus.history.previous()
-				if client.focus then
-					client.focus:raise()
-				end
-			end
-		end,
-		{description = "go back", group = "client"}),
 
 	awful.key({Modkey,}, "Return", function () awful.spawn(Terminal) end,
 		{description = "open a terminal", group = "launcher"}),
@@ -96,7 +83,10 @@ globalkeys = gears.table.join(
         
     awful.key({}, "KP_Enter",
         Process_prompt,
-        {description = "submit a prompt", group = "client"})
+        {description = "submit a prompt", group = "client"}),
+    awful.key({Modkey, "Shift"}, "s",
+	function () awful.spawn("flameshot gui") end,
+        {description = "screenshot", group = "launcher"})
 )
 
 clientkeys = gears.table.join(

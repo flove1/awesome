@@ -6,7 +6,8 @@ require("ui.wallpaper")
 
 awful.screen.connect_for_each_screen(function(s)
     Set_bar(s)
-    Set_calendar(s)
-    Set_shortcuts(s)
-    Set_chat(s)
 end)
+
+awful.widget.only_on_screen(Set_calendar(screen.primary), screen.primary)
+awful.widget.only_on_screen(Set_shortcuts(screen.primary), screen.primary)
+awful.widget.only_on_screen(Set_chat(screen.primary), screen.primary)

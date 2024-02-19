@@ -34,25 +34,29 @@ function Create_widget(s, width, height, y, content)
 	}
 
 	local hovering = false
+    
+    local show = gears.timer{ timeout = 0.1 }
+    show:connect_signal("timeout", function ()
+        if hovering then
+            widget_anim.target = s.geometry.width - width + border_width
+        end
+    end)
 
-	local function hide_widget()
-		if not hovering then
-			widget_anim.target = s.geometry.width - slider_width + 1
-		end
-	end
+    local hide = gears.timer{ timeout = 0.2 }
+    hide:connect_signal("timeout", function ()
+        if not hovering then
+            widget_anim.target = s.geometry.width - slider_width + 1
+        end
+    end)
 
-	widget:connect_signal("mouse::enter", function (c)
+    widget:connect_signal("button::press", function(c, _, _, btn)
 		hovering = true
-		widget_anim.target = s.geometry.width - width + border_width
-	end)
+        show:start()
+    end)
 
 	widget:connect_signal("mouse::leave", function(c)
 		hovering = false
-		local hide = gears.timer{ timeout = 0.2, autostart = true}
-		  hide:connect_signal("timeout", function ()
-			hide_widget()
-			hide:stop()
-		end)
+        hide:start()
 	end)
 
     widget:setup {
@@ -83,7 +87,6 @@ function Create_widget(s, width, height, y, content)
 			{
 				{
 					wibox.widget.base.make_widget(),
-					fg = beautiful.bg,
 					bg = beautiful.fg,
 					forced_width = slider_width,
 					forced_height = height/2,

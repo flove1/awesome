@@ -16,24 +16,12 @@ awful.rules.rules = {
 			placement = awful.placement.no_overlap+awful.placement.no_offscreen
     	}
 	},
-	{
-		rule_any = {
-            role = {
-                "pop-up",
-            }
-        },
-		properties = {
-			floating = true,
-            placement = awful.placement.centered,
-            titlebars_enabled = true
-		}
-	},
     {
 		rule_any = {
-			type = { "normal", "dialog" }
-      		},
+			type = { "normal"}
+        },
 		properties = {
-			titlebars_enabled = true
+			titlebars_enabled = false
 		}
 	},
 	{
@@ -42,10 +30,31 @@ awful.rules.rules = {
 				"dialog"
 			}
 		},
-      		properties = {
-			floating = true,
+        properties = {
+            floating = true,
             placement = awful.placement.centered,
+			titlebars_enabled = false
 		},
     },
+	{
+		rule_any = {
+            role = { "pop-up" },
+            instance = { "blueman-manager" },
+            class = { "Kazam" }
+        },
+		properties = {
+            placement = awful.placement.centered,
+            floating = true,
+            titlebars_enabled = false
+		}
+	},
+    {
+		rule_any = {
+            class = { "firefox", "Code", "obsidian" }
+        },
+		properties = {
+			titlebars_enabled = false
+		}
+	},
 }
 

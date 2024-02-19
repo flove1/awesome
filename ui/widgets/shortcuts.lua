@@ -72,11 +72,7 @@ function Set_shortcuts(s)
                 end
             end
             if not launched then
-                awful.spawn("blueman-manager", {
-                    floating = true,
-                    placement = awful.placement.centered,
-                    titlebars_enabled = false
-                })
+                awful.spawn("blueman-manager")
             end
         elseif btn == 3 then
             bluetooth_active = not bluetooth_active

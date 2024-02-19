@@ -3,6 +3,7 @@ local beautiful = require("beautiful")
 local gears = require("gears")
 local rubato = require("lib.rubato")
 local wibox = require("wibox")
+local naughty = require("naughty")
 
 require("ui.widgets.widget")
 require("ui.button")
@@ -186,16 +187,6 @@ function Set_chat(s)
         prompt_container.children[2]:replace_widget(abort_button, prompt_button)
     end)
 
-    awesome.connect_signal("chat::timeout", function()
-        output_text.text = "Prompt took too long to process, try again..."
-        prompt_container.children[2]:replace_widget(abort_button, prompt_button)
-    end)
-
-    awesome.connect_signal("chat::output", function(t)
-        output_text.text = t
-        prompt_container.children[2]:replace_widget(abort_button, prompt_button)
-    end)
-
     s.chat = Create_widget(s, width, height, s.geometry.height - height - beautiful.useless_gap*6, wibox.widget{
         {
             prompt_container,
@@ -209,4 +200,26 @@ function Set_chat(s)
         left = width/10,
         layout = wibox.container.margin
     })
+
+    local reset_color_timer = gears.timer{ timeout = 2.5 }
+   
+    reset_color_timer:connect_signal("timeout", function ()
+        s.chat.widget.widget.children[2].widget.bg = beautiful.fg
+    end)
+
+    awesome.connect_signal("chat::output", function(t)
+        s.chat.widget.widget.children[2].widget.bg = "#BCFF81"
+        reset_color_timer:again()
+
+        output_text.text = t
+        prompt_container.children[2]:replace_widget(abort_button, prompt_button)
+    end)
+
+    awesome.connect_signal("chat::timeout", function()
+        s.chat.widget.widget.children[2].widget.bg = "#FF0000"
+        reset_color_timer:again()
+
+        output_text.text = "Prompt took too long to process, try again..."
+        prompt_container.children[2]:replace_widget(abort_button, prompt_button)
+    end)
 end

@@ -47,15 +47,15 @@ function Process_prompt()
     timer_running = true
 
     if current_mode == GPT_Mode.Normal then
-        awful.spawn.easy_async("python ~/.config/awesome/scripts/gpt.py", function(stdout)
+        awful.spawn.easy_async("python /home/flove/.config/awesome/scripts/gpt.py", function(stdout)
             process(call_number, stdout)
         end)
     elseif current_mode == GPT_Mode.Short then
-        awful.spawn.easy_async("python ~/.config/awesome/scripts/gpt.py --short", function(stdout)
+        awful.spawn.easy_async("python /home/flove/.config/awesome/scripts/gpt.py --short", function(stdout)
             process(call_number, stdout)
         end)
     elseif current_mode == GPT_Mode.Academic then
-        awful.spawn.easy_async("python ~/.config/awesome/scripts/gpt.py --academic", function(stdout)
+        awful.spawn.easy_async("python /home/flove/.config/awesome/scripts/gpt.py --academic", function(stdout)
             process(call_number, stdout)
         end)
     end

@@ -7,5 +7,8 @@
         "clientbuttons",
         "root",
         "menu"
+    ],
+    "Lua.diagnostics.disable": [
+        "different-requires"
     ]
 }

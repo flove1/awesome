@@ -9,7 +9,15 @@ local dpi = beautiful.xresources.apply_dpi
 require("ui.menu")
 require("ui.widgets.power")
 
-local launcher = awful.widget.launcher({ image = beautiful.awesome_icon, menu = menu })
+local launcher = wibox.widget{
+	markup = "<span foreground='"..beautiful.fg.."'></span>",
+	align = "center",
+	justify = true,
+        font = "Font Awesome 6 Free 24",
+	color = beautiful.fg,
+	widget = wibox.widget.textbox,
+}
+
 local keyboard = wibox.container.place(awful.widget.keyboardlayout())
 
 local clock = wibox.widget({
@@ -41,9 +49,7 @@ function Set_bar(s)
                     client.focus:toggle_tag(t)
                 end
             end),
-            awful.button({ }, 2, awful.tag.viewtoggle),
-            awful.button({ }, 5, function(t) awful.tag.viewnext(t.screen) end),
-            awful.button({ }, 4, function(t) awful.tag.viewprev(t.screen) end)),
+            awful.button({ }, 2, awful.tag.viewtoggle)),
         widget_template = {
             {
                 {
@@ -96,7 +102,16 @@ function Set_bar(s)
         duration = 0.5,
         easing = rubato.easing.quadratic,
         subscribed = function (r)
-            if (r > 10) then
+            if (r>450) then
+                s.power.widget.widget.children[2].opacity = 1
+            else
+                s.power.widget.widget.children[2].opacity = math.min(math.max(0, r / 500), 1)
+                if (s.power.widget.widget.children[2].opacity < 0.5) then
+                    s.power.widget.widget.children[2].opacity = 0
+                end
+            end
+
+            if (r > 50) then
                 local geometry = s.power:geometry()
                 geometry.width = r
                 s.power:geometry(geometry)
@@ -107,39 +122,42 @@ function Set_bar(s)
         end
     }
 
-    local hovering = false
+	local hovering = false
 
-    local function hide_power()
-        if not hovering then
-            power_anim.target = 10
+    local power_show = gears.timer{ timeout = 0.1 }
+    power_show:connect_signal("timeout", function ()
+        if hovering then
+            power_anim.target = 500
         end
-    end
-
-    s.power:connect_signal("mouse::enter", function (c)
-        hovering = true
     end)
 
-    s.power:connect_signal("mouse::leave", function(c)
-        hovering = false
-        local hide = gears.timer{ timeout = 0.75, autostart = true}
-          hide:connect_signal("timeout", function ()
-            hide_power()
-        end)
+    local power_hide = gears.timer{ timeout = 0.2 }
+    power_hide:connect_signal("timeout", function ()
+        if not hovering then
+            power_anim.target = 0
+        end
+        power_hide:stop()
     end)
 
-    power_button:connect_signal("mouse::enter", function(c)
-        hovering = true
-        power_anim.target = 500
+	s.power:connect_signal("mouse::enter", function (c)
+		hovering = true
+        power_show:start()
+	end)
+
+	s.power:connect_signal("mouse::leave", function(c)
+		hovering = false
+        power_hide:start()
+	end)
+
+    power_button:connect_signal("button::press", function(c, _, _, btn)
+		hovering = true
+        power_show:start()
     end)
 
     power_button:connect_signal("mouse::leave", function(c)
-        hovering = false
-        local hide = gears.timer{ timeout = 0.75, autostart = true }
-          hide:connect_signal("timeout", function ()
-            hide_power()
-        end)
+		hovering = false
+        power_hide:start()
     end)
-
 
     s.bar = awful.wibar { 
         position = "left", 
@@ -158,6 +176,7 @@ function Set_bar(s)
         {
             layout = wibox.container.background,
             bg = beautiful.bg,
+	    shape = gears.shape.rounded_bar, 
             {
                 layout = wibox.layout.stack,
                 {
@@ -173,7 +192,7 @@ function Set_bar(s)
                     layout = wibox.layout.align.vertical,
                     {
                         layout = wibox.layout.fixed.vertical,
-                        margin(launcher, 2, 2, 2, 2),
+                        margin(launcher, 0, 0, 16, 0),
                     },
                     nil,
                     {
